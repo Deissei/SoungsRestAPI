@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from rest_framework.permissions import IsAuthenticated
+
+from apps.artists.serializers import ArtistSerializer
+from apps.artists.models import Artist
+
+
+class ArtistViewSet(ModelViewSet):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
+    permission_classes = [IsAuthenticated]
